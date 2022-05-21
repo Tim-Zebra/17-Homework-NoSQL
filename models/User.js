@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 import isEmail from 'validator/lib/isEmail';
+
 // Schema to create User model.
 // Email validator obtained using validator.js from https://www.npmjs.com/package/validator
 const userSchema = new Schema (
@@ -18,10 +19,10 @@ const userSchema = new Schema (
     },
     thoughts: [
       {
-      type: Schema.Types.ObjectId,
-      ref: 'Thought',
-    },
-  ],
+        type: Schema.Types.ObjectId,
+        ref: 'Thought',
+      },
+    ],
     friends: [
       {
         type: Schema.Types.ObjectId,

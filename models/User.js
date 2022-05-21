@@ -15,6 +15,25 @@ const userSchema = new Schema (
       unique: true,
       required: true,
       validate: isEmail(v),
+    },
+    thoughts: [
+      {
+      type: Schema.Types.ObjectId,
+      ref: 'Thought',
+    },
+  ],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
+  },
+  {
+    toJSON: {
+      
     }
   }
 )
+
+// virtual that retrieves the length of the user's friends array field on query

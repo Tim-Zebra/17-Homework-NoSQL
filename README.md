@@ -28,10 +28,12 @@ describe <br /> <br />
 
 
 ## References:
+* Obtained base files from UTA Bootcamp #18-NoSQL - Student Mini Project
 * 
-* 
+
 ## Development Process:
-1. 
+1. Created base files and folders
+2. Doc outline + pseudocoded
 2. 
 3. See commits for more details
 

@@ -60,25 +60,25 @@ module.exports = {
         }
       }
     );
-  }
-  // Delete a student and remove them from the course
-  deleteStudent(req, res) {
-    Student.findOneAndRemove({ _id: req.params.studentId })
-      .then((student) =>
-        !student
-          ? res.status(404).json({ message: 'No such student exists' })
-          : Course.findOneAndUpdate(
-              { students: req.params.studentId },
-              { $pull: { students: req.params.studentId } },
+  },
+  // Delete a user and remove associated thoughts
+  deleteUser(req, res) {
+    User.findOneAndRemove({ _id: req.params.userId })
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'User not found' })
+          : Thought.findOneAndUpdate(
+              { users: req.params.userId },
+              { $pull: { students: req.params.userId } },
               { new: true }
             )
       )
-      .then((course) =>
-        !course
+      .then((user) =>
+        !user
           ? res.status(404).json({
-              message: 'Student deleted, but no courses found',
+              message: 'User deleted, but no associated thoughts',
             })
-          : res.json({ message: 'Student successfully deleted' })
+          : res.json({ message: 'User and thoughts successfully deleted' })
       )
       .catch((err) => {
         console.log(err);
@@ -93,22 +93,6 @@ module.exports = {
     Student.findOneAndUpdate(
       { _id: req.params.studentId },
       { $addToSet: { assignments: req.body } },
-      { runValidators: true, new: true }
-    )
-      .then((student) =>
-        !student
-          ? res
-              .status(404)
-              .json({ message: 'No student found with that ID :(' })
-          : res.json(student)
-      )
-      .catch((err) => res.status(500).json(err));
-  },
-  // Remove assignment from a student
-  removeAssignment(req, res) {
-    Student.findOneAndUpdate(
-      { _id: req.params.studentId },
-      { $pull: { assignment: { assignmentId: req.params.assignmentId } } },
       { runValidators: true, new: true }
     )
       .then((student) =>

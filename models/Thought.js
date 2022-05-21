@@ -8,12 +8,12 @@ const thoughtSchema = new Schema (
     thoughtText: {
       type: String,
       required: true,
-      minLength: 1,
+      minlength: 1,
       maxlength: 280,
     },
     createdAt: {
       type: Date,
-      default: Date.now,
+      default: () => new Date().getMonth().getDate().getFullYear(),
     },
     username: {
       type: String,
@@ -24,6 +24,7 @@ const thoughtSchema = new Schema (
   {
     toJSON: {
       virtuals: true,
+      getters: true,
     },
     id: false,
   }

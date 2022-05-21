@@ -33,12 +33,34 @@ module.exports = {
         return res.status(500).json(err);
       });
   },
-  // create a new student
+  // create a new user
   createUser(req, res) {
     User.create(req.body)
       .then((user) => res.json(user))
       .catch((err) => res.status(500).json(err));
   },
+  // update a user
+  updateUser(req, res) {
+    User.findOneAndUpdate(
+      // find criteria
+      { name: req.body.id },
+      // updates user name and email
+      { username: req.body.username,
+        email: req.body.email,
+      },
+      // returns updated document
+      { new: true },
+      (err, result) => {
+        if (result) {
+          res.status(200).json(result);
+          console.log(`Updated: ${result}`);
+        } else {
+          console.log('Uh Oh, something went wrong');
+          res.status(500).json({ message: 'something went wrong' });
+        }
+      }
+    );
+  }
   // Delete a student and remove them from the course
   deleteStudent(req, res) {
     Student.findOneAndRemove({ _id: req.params.studentId })

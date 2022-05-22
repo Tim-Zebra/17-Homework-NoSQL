@@ -29,9 +29,8 @@ connection.once('open', async () => {
 
   // Creates 20 thoughts and randomly assigns them to users, also adds reactions
     for(let k = 0; k < 20; k++) {
-      const randomNum = randomNumber(users.length);
+      const randomNum = randomNumber(users.length-1);
       const thoughtText = getRandomThought();
-
       const username = users[randomNum].username;
 
       // Adds up to 5 reactions from a random users

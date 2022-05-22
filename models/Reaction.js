@@ -20,9 +20,6 @@ const reactionSchema = new Schema (
       type: Date,
       default: () => new Date().getMonth().getDate().getFullYear(),
     },
-    toJSON: {
-      getters: true,
-    },
     id: false,
   }
 );

@@ -35,12 +35,12 @@ connection.once('open', async () => {
     let thoughtNum = Math.random(6);
     for(let k = 0; k < thoughtNum; k++) {
       let thoughtText = getRandomAssignments();
-      
+
       thoughts.push({
-  
+        thoughtText,
+        username,
       })
     }
-
   }
 
   // Add students to the collection and await the results

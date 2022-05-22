@@ -25,7 +25,7 @@ module.exports = {
           ? res.status(404).json({ message: 'No user with that ID' })
           : res.json({
               user,
-              // thoughts: await thoughts(req.params.userId),
+              thoughts: await thoughts(req.params.userId),
               // friends: await friends(req.params.userId),
             })
       )

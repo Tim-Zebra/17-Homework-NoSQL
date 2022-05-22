@@ -15,21 +15,38 @@ connection.once('open', async () => {
 
   // Create empty array to hold the users
   const users = [];
+  
+  const thoughts = [];
 
-// Add 10 users to arrays
+  // Add 10 users to arrays
   for (let i = 0; i < 10; i++) {
-    // Get some random assignment objects using a helper function that we imported from ./data
-    const assignments = getRandomAssignments(20);
-
     const username = getRandomName();
+
+    // Thoughts are looked up by username, this creates the thought using the instance of the username.
+    createThought(username);
 
     users.push({
       username
     });
   }
 
+  // Creates 0-5 thoughts
+  const createThought = (username) => {
+    let thoughtNum = Math.random(6);
+    for(let k = 0; k < thoughtNum; k++) {
+      let thoughtText = getRandomAssignments();
+      
+      thoughts.push({
+  
+      })
+    }
+
+  }
+
   // Add students to the collection and await the results
   await User.collection.insertMany(users);
+
+  await Thought.collection.insertMany(thoughts);
 
   // Add courses to the collection and await the results
   // await Course.collection.insertOne({

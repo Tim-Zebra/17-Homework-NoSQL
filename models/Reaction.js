@@ -21,7 +21,7 @@ const reactionSchema = new Schema (
       default: () => new Date().getMonth().getDate().getFullYear(),
     },
     toJSON: {
-      // getters: true,
+      getters: true,
     },
     id: false,
   }

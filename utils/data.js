@@ -97,6 +97,16 @@ const thoughtDescrp = [
   'Deliveries',
 ];
 
+// Reactions
+const reactionList = [
+  'wowz!',
+  'hmmm',
+  'insightful',
+  'that\'s terrible',
+  'try grammarly',
+  'savage',
+];
+
 // Get a random item given an array
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
@@ -106,8 +116,13 @@ const getRandomName = () =>
 
 // Function to generate random assignments that we can add to student object.
 const getRandomThought = () => {
-  return getRandomArrItem(thoughtDescrp)
+  return getRandomArrItem(thoughtDescrp);
+};
+
+// Function to generate random assignments that we can add to student object.
+const getRandomReaction = () => {
+  return getRandomArrItem(reactionList);
 };
 
 // Export the functions for use in seed.js
-module.exports = { getRandomName, getRandomThought };
+module.exports = { getRandomName, getRandomThought, getRandomReaction };

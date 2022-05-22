@@ -1,6 +1,6 @@
 const connection = require('../config/connection');
 const { User, Thought } = require('../models');
-const { getRandomName, getRandomAssignments } = require('./data');
+const { getRandomName, getRandomThought } = require('./data');
 
 connection.on('error', (err) => err);
 
@@ -22,26 +22,24 @@ connection.once('open', async () => {
   for (let i = 0; i < 10; i++) {
     const username = getRandomName();
 
-    // Thoughts are looked up by username, this creates the thought using the instance of the username.
-    createThought(username);
-
     users.push({
       username
     });
   }
 
-  // Creates 0-5 thoughts
-  const createThought = (username) => {
-    let thoughtNum = Math.random(6);
-    for(let k = 0; k < thoughtNum; k++) {
-      let thoughtText = getRandomAssignments();
+  // Creates 30 thoughts and randomly assigns them to users
+    for(let k = 0; k < 30; k++) {
+      let randomNum = Math.floor(Math.random() * users.length);
+      
+      const thoughtText = getRandomThought();
+
+      const username = users[randomNum].username;
 
       thoughts.push({
         thoughtText,
         username,
       })
     }
-  }
 
   // Add students to the collection and await the results
   await User.collection.insertMany(users);
@@ -57,6 +55,7 @@ connection.once('open', async () => {
 
   // Log out the seed data to indicate what should appear in the database
   console.table(users);
+  console.table(thoughts);
   console.info('Seeding complete! 🌱');
   process.exit(0);
 });

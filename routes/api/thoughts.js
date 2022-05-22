@@ -9,9 +9,9 @@ const {
 // Get all thoughts
 router.route('/').get(getThoughts);
 
-// /api/users/:id
+// /api/thoughts/:id
 // Get single thought by id
-router.route('/:thougtId').get(getSingleThought);
+router.route('/:thoughtId').get(getSingleThought);
 
 // POST
 // Create a new thought

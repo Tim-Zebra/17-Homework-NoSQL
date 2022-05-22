@@ -16,16 +16,16 @@ module.exports = {
         return res.status(500).json(err);
       });
   },
-  // Get a single user by id
+  // Get a single thopught by id
   getSingleThought(req, res) {
+    console.log('This happened', req.params.thoughtId);
     Thought.findOne({ _id: req.params.thoughtId })
       .select('-__v')
-      .then(async (user) =>
-        !user
+      .then(async (thought) =>
+        !thought
           ? res.status(404).json({ message: 'No thought with that ID' })
           : res.json({
-              user,
-              grade: await grade(req.params.thoughtId),
+            thought,
             })
       )
       .catch((err) => {

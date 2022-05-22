@@ -13,4 +13,17 @@ router.route('/').get(getUsers);
 // Get single user by id
 router.route('/:userId').get(getSingleUser)
 
+// POST
+// Create a new user
+
+// PUT
+// Update a user by id (possibly put in userId route)
+
+// DELETE
+// Delete a user by id (possibly put in userId route)
+// Bonus Remove a users associated thoughts when deleted
+
+// /api/users/:userId/friends/:friendId
+// POST & // DELETE
+
 module.exports = router;

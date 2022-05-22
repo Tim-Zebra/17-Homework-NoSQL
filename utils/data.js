@@ -1,3 +1,4 @@
+// List obtained from UTA bootcamp MiniProject 18
 const names = [
   'Aaran',
   'Aaren',
@@ -74,6 +75,7 @@ const names = [
   'Parker',
 ];
 
+// List obtained from UTA bootcamp MiniProject 18
 const thoughtDescrp = [
   'Decision Tracker',
   'Find My Phone',

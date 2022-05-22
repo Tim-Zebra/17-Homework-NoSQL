@@ -6,7 +6,7 @@ module.exports = {
   getThoughts(req, res) {
     Thought.find()
       .then(async (thoughts) => {
-        const userObj = {
+        const thoughtObj = {
           thoughts,
         };
         return res.json(thoughtObj);

@@ -97,7 +97,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  // Add an assignment to a student
+  // Add a friend
   addAssignment(req, res) {
     console.log('You are adding an assignment');
     console.log(req.body);

@@ -18,7 +18,7 @@ const reactionSchema = new Schema (
     },
     createdAt: {
       type: Date,
-      default: () => new Date().getMonth().getDate().getFullYear(),
+      default: () => `${new Date(Date.now()).getMonth() + 1}/${new Date(Date.now()).getDate()}/${new Date(Date.now()).getFullYear()}`
     },
     id: false,
   }

@@ -81,10 +81,8 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({ message: 'User not found' })
-          : Thought.findOneAndUpdate(
-              { users: req.params.userId },
-              { $pull: { students: req.params.userId } },
-              { new: true }
+          : Thought.deleteMany(
+              { username: user.username },
             )
       )
       .then((user) =>
@@ -99,7 +97,6 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-
   // Add an assignment to a student
   addAssignment(req, res) {
     console.log('You are adding an assignment');

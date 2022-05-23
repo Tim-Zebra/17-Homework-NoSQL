@@ -25,7 +25,6 @@ module.exports = {
         return res.json(userObj);
       })
       .catch((err) => {
-        console.log(err);
         return res.status(500).json(err);
       });
   },
@@ -43,7 +42,6 @@ module.exports = {
             })
       )
       .catch((err) => {
-        console.log(err);
         return res.status(500).json(err);
       });
   },
@@ -67,9 +65,7 @@ module.exports = {
       (err, result) => {
         if (result) {
           res.status(200).json(result);
-          console.log(`Updated: ${result}`);
         } else {
-          console.log('Uh Oh, something went wrong');
           res.status(500).json({ message: 'something went wrong' });
         }
       }
@@ -93,14 +89,11 @@ module.exports = {
           : res.json({ message: 'User and thoughts successfully deleted' })
       )
       .catch((err) => {
-        console.log(err);
         res.status(500).json(err);
       });
   },
   // Add a friend
   addAssignment(req, res) {
-    console.log('You are adding an assignment');
-    console.log(req.body);
     Student.findOneAndUpdate(
       { _id: req.params.studentId },
       { $addToSet: { assignments: req.body } },

@@ -12,7 +12,6 @@ module.exports = {
         return res.json(thoughtObj);
       })
       .catch((err) => {
-        console.log(err);
         return res.status(500).json(err);
       });
   },
@@ -45,17 +44,16 @@ module.exports = {
       // find criteria
       { id: req.params.id },
       // updates user name and email
-      { username: req.body.username,
-        email: req.body.email,
+      { 
+        username: req.body.username,
+        thoughtText: req.body.thoughtText,
       },
       // returns updated document
       { new: true },
       (err, result) => {
         if (result) {
           res.status(200).json(result);
-          console.log(`Updated: ${result}`);
         } else {
-          console.log('Uh Oh, something went wrong');
           res.status(500).json({ message: 'something went wrong' });
         }
       }

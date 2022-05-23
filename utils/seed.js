@@ -21,9 +21,10 @@ connection.once('open', async () => {
   // Add 6 users to arrays
   for (let i = 0; i < 6; i++) {
     const username = getRandomName();
-
+    const email = `${username}@thoughtReactor.org`
     users.push({
-      username
+      username,
+      email,
     });
   }
 

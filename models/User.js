@@ -18,7 +18,6 @@ const userSchema = new Schema (
       validate: (function(v) {
         validator.isEmail(v)
       }),
-      default: "test@user.com",
     },
     thoughts: [
       {

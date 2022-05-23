@@ -5,11 +5,13 @@ const { User, Thought } = require('../models');
 const thoughts = async (userId) =>
   Thought.aggregate([
     { $match: { _id: ObjectId(userId) } },
+    { $unwind: '$thoughts', },
   ]);
 
   const friends = async (userId) =>
   User.aggregate([
     { $match: { _id: ObjectId(userId) } },
+    { $unwind: '$friends', },
   ]);
 
 module.exports = {
@@ -37,7 +39,7 @@ module.exports = {
           : res.json({
               user,
               thoughts: await thoughts(req.params.userId),
-              // friends: await friends(req.params.userId),
+              friends: await friends(req.params.userId),
             })
       )
       .catch((err) => {

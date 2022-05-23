@@ -40,10 +40,10 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // update a user
-  updateUser(req, res) {
-    User.findOneAndUpdate(
+  updateThought(req, res) {
+    Thought.findOneAndUpdate(
       // find criteria
-      { name: req.body.id },
+      { id: req.params.id },
       // updates user name and email
       { username: req.body.username,
         email: req.body.email,
@@ -62,29 +62,14 @@ module.exports = {
     );
   },
   // Delete a user and remove associated thoughts
-  deleteUser(req, res) {
-    User.findOneAndRemove({ _id: req.params.userId })
-      .then((user) =>
-        !user
-          ? res.status(404).json({ message: 'User not found' })
-          : Thought.findOneAndUpdate(
-              { users: req.params.userId },
-              { $pull: { students: req.params.userId } },
-              { new: true }
-            )
+  deleteThought(req, res) {
+    Thought.findOneAndRemove({ _id: req.params.thoughtId })
+      .then((thought) =>
+        !thought
+          ? res.status(404).json({ message: 'Thought not found' })
+          : res.json({ message: 'Thought successfully deleted!' })
       )
-      .then((user) =>
-        !user
-          ? res.status(404).json({
-              message: 'User deleted, but no associated thoughts',
-            })
-          : res.json({ message: 'User and thoughts successfully deleted' })
-      )
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  },
+    },
   // // Add an assignment to a student
   // addAssignment(req, res) {
   //   console.log('You are adding an assignment');

@@ -57,7 +57,7 @@ module.exports = {
   updateUser(req, res) {
     User.findOneAndUpdate(
       // find criteria
-      { name: req.body.id },
+      { id: req.params.id},
       // updates user name and email
       { username: req.body.username,
         email: req.body.email,

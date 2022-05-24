@@ -18,7 +18,9 @@ module.exports = {
   // Get all users
   getUsers(req, res) {
     User.find()
+      .select('-__v')  
       .populate({ path: 'thoughts', select: '-__v' })
+      .lean().populate( 'friends', '-__v -thoughts -friends' )
       .then((users) => res.json(users))
       .catch((err) => {
         console.log('This happened', err);
@@ -29,13 +31,13 @@ module.exports = {
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select('-__v')
+      .populate({ path: 'thoughts', select: '-__v' })
+      .lean().populate( 'friends', '-__v -thoughts -friends' )
       .then(async (user) =>
         !user
           ? res.status(404).json({ message: 'No user with that ID' })
           : res.json({
               user,
-              thoughts: await thoughts(req.params.userId),
-              friends: await friends(req.params.userId),
             })
       )
       .catch((err) => {

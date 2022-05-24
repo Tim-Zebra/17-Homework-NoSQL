@@ -18,11 +18,12 @@ A backend social network that allows you to add, remove, update, and delete user
 * Start server and run routes as desired <br />
 
 ## Application Demos:
-<h2 align="center">Title</h2>
-<p align="center"><img src="./demos/.png" alt="image demo" width="800" height="auto"/></p> <br /><br />
-<h2 align="center">Second Title</h2>
-<p align="center"><img src="./demos/.gif" alt="gif demo" width="800" height="auto"/></p> <br />
-<p align="center"><font size="4"><a href="">Video Demo</a></font></p>
+<h2 align="center">GET all users</h2>
+<p align="center"><img src="./demos/demo_getUsers.png" alt="image demo" width="800" height="auto"/></p> <br /><br />
+<h2 align="center">Mongo DB</h2>
+<p align="center"><img src="./demos/demo_mongoDb.gif" alt="gif demo" width="800" height="auto"/></p> <br />
+<p align="center"><font size="4"><a href="https://drive.google.com/file/d/1ExDqSSA5IvaqbCkkFluAwccYiv44xNDu/view">Video Demo: Part 1</a></font></p> <br />
+<p align="center"><font size="4"><a href="https://drive.google.com/file/d/1aMswsX-0w7u-pPpKPENue5AY85CHlMou/view">Video Demo: Part 2</a></font></p>
 
 ## Link to Deployed Page:
 N/A

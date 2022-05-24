@@ -23,7 +23,6 @@ module.exports = {
       .populate( 'friends', '-__v' )
       .then((users) => res.json(users))
       .catch((err) => {
-        console.log('This happened', err);
         return res.status(500).json(err);
       });
   },

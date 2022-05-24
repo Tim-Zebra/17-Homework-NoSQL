@@ -1,18 +1,4 @@
-const { ObjectId } = require('mongoose').Types;
 const { User, Thought } = require('../models');
-
-// Gets associated thoughts for user
-const thoughts = async (userId) =>
-  Thought.aggregate([
-    { $match: { _id: ObjectId(userId) } },
-    { $unwind: '$thoughts', },
-  ]);
-
-  const friends = async (userId) =>
-  User.aggregate([
-    { $match: { _id: ObjectId(userId) } },
-    { $unwind: '$friends', },
-  ]);
 
 module.exports = {
   // Get all users

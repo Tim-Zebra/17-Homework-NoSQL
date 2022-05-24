@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongoose').Types;
 const { User, Thought } = require('../models');
 
 module.exports = {
@@ -17,7 +16,6 @@ module.exports = {
   },
   // Get a single thopught by id
   getSingleThought(req, res) {
-    console.log('This happened', req.params.thoughtId);
     Thought.findOne({ _id: req.params.thoughtId })
       .select('-__v')
       .then(async (thought) =>
@@ -28,7 +26,6 @@ module.exports = {
             })
       )
       .catch((err) => {
-        console.log(err);
         return res.status(500).json(err);
       });
   },

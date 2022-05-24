@@ -74,40 +74,26 @@ module.exports = {
         !thought
           ? res.status(404).json({ message: 'Thought not found' })
           : res.json({ message: 'Thought successfully deleted!' })
-      )
-    },
-  // // Add an assignment to a student
-  // addAssignment(req, res) {
-  //   console.log('You are adding an assignment');
-  //   console.log(req.body);
-  //   Student.findOneAndUpdate(
-  //     { _id: req.params.studentId },
-  //     { $addToSet: { assignments: req.body } },
-  //     { runValidators: true, new: true }
-  //   )
-  //     .then((student) =>
-  //       !student
-  //         ? res
-  //             .status(404)
-  //             .json({ message: 'No student found with that ID :(' })
-  //         : res.json(student)
-  //     )
-  //     .catch((err) => res.status(500).json(err));
-  // },
-  // // Remove assignment from a student
-  // removeAssignment(req, res) {
-  //   Student.findOneAndUpdate(
-  //     { _id: req.params.studentId },
-  //     { $pull: { assignment: { assignmentId: req.params.assignmentId } } },
-  //     { runValidators: true, new: true }
-  //   )
-  //     .then((student) =>
-  //       !student
-  //         ? res
-  //             .status(404)
-  //             .json({ message: 'No student found with that ID :(' })
-  //         : res.json(student)
-  //     )
-  //     .catch((err) => res.status(500).json(err));
-  // },
+    );
+  },
+  // Add a reaction to a thought
+  addReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $addToSet: { reactions: req.body } },
+      { runValidators: true, new: true }
+    )
+      .then((reaction) => res.json(reaction))
+      .catch((err) => res.status(500).json(err));
+  },
+  // Remove a reaction from a thought
+  deleteReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $pull: { reactions: { reactionId: req.body.reactionId } } },
+      { runValidators: true, new: true }
+    )
+      .then((reaction) => res.json(reaction))
+      .catch((err) => res.status(500).json('No reaction found with that ID :( '));
+  },
 };
